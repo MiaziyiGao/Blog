@@ -1,0 +1,976 @@
+/* 重置和基础样式 */
+* {
+  margin: 0; /* 清除所有元素的默认外边距 */
+  padding: 0; /* 清除所有元素的默认内边距 */
+  box-sizing: border-box; /* 设置盒模型为border-box */
+}
+
+body {
+  font-family: "Arial", sans-serif; /* 设置字体为Arial */
+  line-height: 1.6; /* 设置行高为1.6倍 */
+  color: #fff; /* 设置默认文字颜色为白色 */
+  overflow-x: hidden; /* 隐藏水平滚动条 */
+}
+
+/* 飞行图片容器 */
+.fi-container {
+  width: 100%; /* 宽度100% */
+  height: 400px; /* 高度400像素 */
+  background: white; /* 背景颜色为白色 */
+  position: relative; /* 相对定位 */
+  overflow: hidden; /* 隐藏溢出内容 */
+}
+
+.fi-image-wrapper {
+  position: absolute; /* 绝对定位 */
+  width: 30%; /* 宽度30% */
+  height: 45%; /* 高度45% */
+  cursor: pointer; /* 鼠标指针变为手形 */
+  transition: transform 0.3s ease; /* 变换过渡效果，持续0.3秒 */
+  border-radius: 8px; /* 圆角8像素 */
+  overflow: hidden; /* 隐藏溢出内容 */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+}
+
+nav {
+  position: fixed; /* 固定定位 */
+  top: 0; /* 距离顶部0像素 */
+  width: 100%; /* 宽度100% */
+  background: rgba(0, 20, 40, 0.95); /* 半透明深蓝背景 */
+  backdrop-filter: blur(10px); /* 背景模糊效果 */
+  z-index: 1000; /* 层级1000，确保在最上层 */
+  padding: 1rem 0; /* 上下内边距1rem */
+  transition: all 0.3s ease; /* 所有属性过渡效果0.3秒 */
+}
+
+nav.scrolled {
+  background: rgba(0, 20, 40, 0.98); /* 滚动时背景更不透明 */
+  box-shadow: 0 2px 20px rgba(0, 255, 255, 0.1); /* 添加青色阴影 */
+}
+
+.nav-container {
+  max-width: 1200px; /* 最大宽度1200像素 */
+  margin: 0 auto; /* 水平居中 */
+  display: flex; /* 弹性布局 */
+  justify-content: space-between; /* 两端对齐 */
+  align-items: center; /* 垂直居中对齐 */
+  padding: 0 2rem; /* 左右内边距2rem */
+}
+
+.logo {
+  font-size: 1.5rem; /* 字体大小1.5rem */
+  font-weight: bold; /* 粗体 */
+  color: #00ffff; /* 青色 */
+  text-decoration: none; /* 去除下划线 */
+}
+
+.nav-links {
+  display: flex; /* 弹性布局 */
+  list-style: none; /* 去除列表样式 */
+  gap: 2rem; /* 项目间距2rem */
+}
+
+.nav-links a {
+  color: #fff; /* 白色文字 */
+  text-decoration: none; /* 去除下划线 */
+  transition: color 0.3s ease; /* 颜色过渡效果0.3秒 */
+  cursor: pointer; /* 鼠标指针 */
+}
+
+.nav-links a:hover {
+  color: #00ffff; /* 悬停时变为青色 */
+}
+
+/* 英雄区域 */
+.hero {
+  height: 100vh; /* 高度为视口高度 */
+  background: linear-gradient(135deg, #001122 0%, #003366 50%, #001122 100%); /* 渐变背景 */
+  display: flex; /* 弹性布局 */
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+  position: relative; /* 相对定位 */
+  overflow: hidden; /* 隐藏溢出 */
+}
+
+.hero-content {
+  text-align: center; /* 文字居中 */
+  z-index: 2; /* 层级2 */
+  max-width: 800px; /* 最大宽度800像素 */
+  padding: 0 2rem; /* 左右内边距2rem */
+}
+
+.hero h1 {
+  font-size: 4rem; /* 字体大小4rem */
+  margin-bottom: 1rem; /* 下外边距1rem */
+  background: linear-gradient(45deg, #00ffff, #ff00ff); /* 渐变背景 */
+  -webkit-background-clip: text; /* 背景裁剪为文字 */
+  -webkit-text-fill-color: transparent; /* 文字颜色透明 */
+  background-clip: text; /* 标准属性 */
+}
+
+.hero h2 {
+  font-size: 1.5rem; /* 字体大小1.5rem */
+  margin-bottom: 2rem; /* 下外边距2rem */
+  color: #cccccc; /* 浅灰色 */
+}
+
+.hero p {
+  font-size: 1.1rem; /* 字体大小1.1rem */
+  line-height: 1.8; /* 行高1.8倍 */
+  color: #aaaaaa; /* 灰色 */
+}
+
+/* 神经网络背景 */
+.neural-bg {
+  position: absolute; /* 绝对定位 */
+  top: 0; /* 顶部对齐 */
+  left: 0; /* 左侧对齐 */
+  width: 100%; /* 宽度100% */
+  height: 100%; /* 高度100% */
+  opacity: 0.3; /* 透明度30% */
+}
+
+.node {
+  position: absolute; /* 绝对定位 */
+  width: 4px; /* 宽度4像素 */
+  height: 4px; /* 高度4像素 */
+  background: #00ffff; /* 青色背景 */
+  border-radius: 50%; /* 圆形 */
+  box-shadow: 0 0 10px #00ffff; /* 青色发光效果 */
+  animation: pulse 2s ease-in-out infinite; /* 脉冲动画，持续2秒，无限循环 */
+}
+
+/* 关于部分 */
+.about {
+  padding: 60px 0; /* 上下内边距60像素 */
+  background: linear-gradient(135deg, #ff9500 0%, #ffb347 100%); /* 橙色渐变背景 */
+  color: #333; /* 深灰色文字 */
+}
+
+.container {
+  max-width: 1200px; /* 最大宽度1200像素 */
+  margin: 0 auto; /* 水平居中 */
+  padding: 0 2rem; /* 左右内边距2rem */
+}
+
+.section-title {
+  font-size: 3rem; /* 字体大小3rem */
+  text-align: center; /* 文字居中 */
+  margin-bottom: 3rem; /* 下外边距3rem */
+  color: #333; /* 深灰色 */
+}
+
+.about-content {
+  display: flex; /* 弹性布局 */
+  align-items: center; /* 垂直居中对齐 */
+  gap: 3rem; /* 间距3rem */
+}
+
+.about-image {
+  width: 100%; /* 宽度100% */
+  display: flex; /* 弹性布局 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+}
+
+.brain-visual {
+  width: 600px; /* 宽度600像素 */
+  height: 500px; /* 高度500像素 */
+  background: url("./images/scene.png"); /* 背景图片 */
+  border-radius: 20px; /* 圆角20像素 */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); /* 阴影效果 */
+  position: relative; /* 相对定位 */
+  background-size: 100% 100%; /* 背景图片完全覆盖 */
+}
+
+.about-text {
+  max-width: 800px; /* 最大宽度800像素 */
+  text-align: center; /* 文字居中 */
+}
+
+.about-text p {
+  font-size: 1.2rem; /* 字体大小1.2rem */
+  line-height: 1.8; /* 行高1.8倍 */
+  margin-bottom: 1.5rem; /* 下外边距1.5rem */
+}
+
+/* 特性部分 */
+.features {
+  padding: 100px 0; /* 上下内边距100像素 */
+  min-height: 800px; /* 最小高度800像素 */
+  background: linear-gradient(135deg, #001122 0%, #003366 50%, #001122 100%); /* 深蓝渐变背景 */
+  position: relative; /* 相对定位 */
+  overflow: hidden; /* 隐藏溢出 */
+}
+
+.features .section-title {
+  color: #00ffff; /* 青色标题 */
+  margin-bottom: 4rem; /* 下外边距4rem */
+}
+
+.neural-mesh-content {
+  display: grid; /* 网格布局 */
+  grid-template-columns: 1fr 1fr; /* 两列等宽 */
+  gap: 4rem; /* 间距4rem */
+  align-items: center; /* 垂直居中对齐 */
+  margin-bottom: 4rem; /* 下外边距4rem */
+}
+
+.neural-visual-container {
+  position: relative; /* 相对定位 */
+  display: flex; /* 弹性布局 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+}
+
+.neural-sphere {
+  position: relative; /* 相对定位 */
+  width: 400px; /* 宽度400像素 */
+  height: 400px; /* 高度400像素 */
+}
+
+.neural-image {
+  width: 100%; /* 宽度100% */
+  height: 100%; /* 高度100% */
+  object-fit: contain; /* 保持比例适配 */
+  filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.3)); /* 青色阴影滤镜 */
+}
+
+.orbital-ring {
+  position: absolute; /* 绝对定位 */
+  border: 2px solid rgba(0, 255, 255, 0.3); /* 青色半透明边框 */
+  border-radius: 50%; /* 圆形 */
+  animation: rotate 20s linear infinite; /* 旋转动画，20秒一周，匀速，无限循环 */
+}
+
+.ring-1 {
+  top: -10px; /* 向上偏移10像素 */
+  left: -10px; /* 向左偏移10像素 */
+  right: -10px; /* 向右偏移10像素 */
+  bottom: -10px; /* 向下偏移10像素 */
+}
+
+.ring-2 {
+  top: -20px; /* 向上偏移20像素 */
+  left: -20px; /* 向左偏移20像素 */
+  right: -20px; /* 向右偏移20像素 */
+  bottom: -20px; /* 向下偏移20像素 */
+  border-color: rgba(255, 0, 255, 0.2); /* 紫色半透明边框 */
+  animation-direction: reverse; /* 反向旋转 */
+}
+
+.ring-3 {
+  top: -30px; /* 向上偏移30像素 */
+  left: -30px; /* 向左偏移30像素 */
+  right: -30px; /* 向右偏移30像素 */
+  bottom: -30px; /* 向下偏移30像素 */
+  border-color: rgba(0, 255, 255, 0.1); /* 青色更透明边框 */
+}
+
+.floating-ui {
+  position: absolute; /* 绝对定位 */
+  padding: 0.5rem 1rem; /* 内边距 */
+  border-radius: 8px; /* 圆角8像素 */
+  font-size: 0.9rem; /* 字体大小0.9rem */
+  font-weight: 500; /* 中等粗细 */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* 阴影效果 */
+}
+
+.maya-button {
+  top: -20px; /* 向上偏移20像素 */
+  right: -20px; /* 向右偏移20像素 */
+  background: #00ffff; /* 青色背景 */
+  color: #001122; /* 深蓝色文字 */
+  cursor: pointer; /* 鼠标指针 */
+  transition: transform 0.3s ease; /* 变换过渡效果 */
+}
+
+.brains-text {
+  bottom: -30px; /* 向下偏移30像素 */
+  left: -30px; /* 向左偏移30像素 */
+  background: linear-gradient(45deg, #ff9500, #ffb347); /* 橙色渐变背景 */
+  color: #001122; /* 深蓝色文字 */
+  font-weight: bold; /* 粗体 */
+  transform: rotate(-12deg); /* 逆时针旋转12度 */
+}
+
+.consciousness-content-box {
+  background: rgba(255, 255, 255, 0.05); /* 半透明白色背景 */
+  backdrop-filter: blur(10px); /* 背景模糊 */
+  border: 1px solid rgba(0, 255, 255, 0.2); /* 青色半透明边框 */
+  border-radius: 20px; /* 圆角20像素 */
+  padding: 2.5rem; /* 内边距2.5rem */
+}
+
+.consciousness-title {
+  color: #00ffff; /* 青色文字 */
+  font-size: 2.5rem; /* 字体大小2.5rem */
+  margin-bottom: 1.5rem; /* 下外边距1.5rem */
+  font-weight: bold; /* 粗体 */
+}
+
+.consciousness-description {
+  margin-bottom: 2rem; /* 下外边距2rem */
+}
+
+.consciousness-description p {
+  font-size: 1.1rem; /* 字体大小1.1rem */
+  line-height: 1.8; /* 行高1.8倍 */
+  margin-bottom: 1rem; /* 下外边距1rem */
+  color: #cccccc; /* 浅灰色 */
+}
+
+.highlight-text {
+  color: #00ffff !important; /* 强制青色，高优先级 */
+  font-weight: bold; /* 粗体 */
+}
+
+.quote-section {
+  background: linear-gradient(45deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1)); /* 渐变背景 */
+  border-left: 4px solid #00ffff; /* 左边框青色 */
+  padding: 1.5rem; /* 内边距1.5rem */
+  border-radius: 10px; /* 圆角10像素 */
+}
+
+.quote-line {
+  color: #00ffff; /* 青色文字 */
+  font-style: italic; /* 斜体 */
+  margin-bottom: 0.5rem; /* 下外边距0.5rem */
+  font-size: 1rem; /* 字体大小1rem */
+}
+
+/* Maya故事部分 */
+#donr {
+  padding: 100px 0; /* 上下内边距100像素 */
+  background: linear-gradient(135deg, #ff9500 0%, #ffb347 50%, #ff6b35 100%); /* 橙色渐变背景 */
+  position: relative; /* 相对定位 */
+  overflow: hidden; /* 隐藏溢出 */
+  min-height: 100vh; /* 最小高度为视口高度 */
+}
+
+.maya-story-container {
+  max-width: 1400px; /* 最大宽度1400像素 */
+  margin: 0 auto; /* 水平居中 */
+  padding: 0 2rem; /* 左右内边距2rem */
+  position: relative; /* 相对定位 */
+}
+
+.maya-story-content {
+  display: grid; /* 网格布局 */
+  grid-template-columns: 1fr; /* 单列 */
+  gap: 3rem; /* 间距3rem */
+  align-items: center; /* 垂直居中对齐 */
+}
+
+.maya-image-section {
+  position: relative; /* 相对定位 */
+  width: 100%; /* 宽度100% */
+  height: 600px; /* 高度600像素 */
+  border-radius: 20px; /* 圆角20像素 */
+  overflow: hidden; /* 隐藏溢出 */
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); /* 阴影效果 */
+  background-image: url("./images/scene1.png"); /* 背景图片 */
+  background-size: 100%; /* 背景图片完全覆盖 */
+}
+
+.maya-text-overlay {
+  position: absolute; /* 绝对定位 */
+  bottom: 0; /* 底部对齐 */
+  left: 0; /* 左侧对齐 */
+  right: 0; /* 右侧对齐 */
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8)); /* 从透明到黑色的渐变 */
+  padding: 3rem 2rem 2rem; /* 内边距：上3rem，左右2rem，下2rem */
+  color: white; /* 白色文字 */
+}
+
+.maya-quote {
+  font-size: 1.2rem; /* 字体大小1.2rem */
+  line-height: 1.6; /* 行高1.6倍 */
+  font-weight: 400; /* 正常字重 */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 文字阴影 */
+  margin-bottom: 1rem; /* 下外边距1rem */
+}
+
+.maya-highlight {
+  color: #00ffff; /* 青色高亮 */
+  font-weight: bold; /* 粗体 */
+}
+
+.maya-emphasis {
+  color: #ffaa00; /* 橙色强调 */
+  font-style: italic; /* 斜体 */
+}
+
+.maya-story-title {
+  text-align: center; /* 居中对齐 */
+  font-size: 3rem; /* 字体大小3rem */
+  color: #001122; /* 深蓝色 */
+  margin-bottom: 2rem; /* 下外边距2rem */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* 文字阴影 */
+  position: relative; /* 相对定位 */
+}
+
+.story-details {
+  display: grid; /* 网格布局 */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 自适应列，最小宽度200像素 */
+  gap: 1rem; /* 间距1rem */
+  margin-top: 2rem; /* 上外边距2rem */
+  padding: 0 2rem; /* 左右内边距2rem */
+}
+
+.detail-card {
+  background: rgba(255, 255, 255, 0.9); /* 半透明白色背景 */
+  padding: 1rem; /* 内边距1rem */
+  border-radius: 10px; /* 圆角10像素 */
+  text-align: center; /* 文字居中 */
+  color: #001122; /* 深蓝色文字 */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+  transition: transform 0.3s ease; /* 变换过渡效果 */
+}
+
+.detail-card:hover {
+  transform: translateY(-5px); /* 悬停时向上移动5像素 */
+}
+
+.detail-label {
+  font-size: 0.9rem; /* 字体大小0.9rem */
+  color: #666; /* 灰色 */
+  margin-bottom: 0.5rem; /* 下外边距0.5rem */
+}
+
+.detail-value {
+  font-size: 1.1rem; /* 字体大小1.1rem */
+  font-weight: bold; /* 粗体 */
+  color: #001122; /* 深蓝色 */
+}
+
+/* 大脑部分 */
+#brain {
+  padding: 80px 0; /* 上下内边距80像素 */
+  background-image: url("./images/scene3.png"); /* 背景图片 */
+  background-size: cover; /* 背景图片覆盖整个区域 */
+  background-position: center; /* 背景图片居中 */
+  background-repeat: no-repeat; /* 背景图片不重复 */
+  position: relative; /* 相对定位 */
+  min-height: 100vh; /* 最小高度为视口高度 */
+  display: flex; /* 弹性布局 */
+  align-items: center; /* 垂直居中 */
+}
+
+#brain::before {
+  content: ""; /* 伪元素内容为空 */
+  position: absolute; /* 绝对定位 */
+  top: 0; /* 顶部对齐 */
+  left: 0; /* 左侧对齐 */
+  right: 0; /* 右侧对齐 */
+  bottom: 0; /* 底部对齐 */
+  background: rgba(0, 0, 0, 0.4); /* 半透明黑色遮罩 */
+  z-index: 1; /* 层级1 */
+}
+
+.brain-container {
+  max-width: 1200px; /* 最大宽度1200像素 */
+  margin: 0 auto; /* 水平居中 */
+  padding: 0 2rem; /* 左右内边距2rem */
+  position: relative; /* 相对定位 */
+  z-index: 2; /* 层级2，在遮罩之上 */
+}
+
+.brain-title {
+  text-align: center; /* 居中对齐 */
+  font-size: 3rem; /* 字体大小3rem */
+  color: white; /* 白色文字 */
+  margin-bottom: 2rem; /* 下外边距2rem */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* 文字阴影 */
+  font-weight: bold; /* 粗体 */
+}
+
+.error-message {
+  background: rgba(0, 0, 0, 0.8); /* 半透明黑色背景 */
+  color: white; /* 白色文字 */
+  padding: 3rem; /* 内边距3rem */
+  border-radius: 20px; /* 圆角20像素 */
+  margin-bottom: 2rem; /* 下外边距2rem */
+  backdrop-filter: blur(10px); /* 背景模糊 */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* 半透明白色边框 */
+}
+
+.error-title {
+  color: #ff4757; /* 红色 */
+  font-size: 1.5rem; /* 字体大小1.5rem */
+  font-weight: bold; /* 粗体 */
+  margin-bottom: 1.5rem; /* 下外边距1.5rem */
+  text-align: center; /* 居中对齐 */
+}
+
+.error-text {
+  font-size: 1.1rem; /* 字体大小1.1rem */
+  line-height: 1.8; /* 行高1.8倍 */
+  margin-bottom: 1.5rem; /* 下外边距1.5rem */
+  color: #f1f2f6; /* 浅灰色 */
+}
+
+.error-quote {
+  text-align: center; /* 居中对齐 */
+  font-style: italic; /* 斜体 */
+  color: #ffa502; /* 橙色 */
+  font-size: 1.3rem; /* 字体大小1.3rem */
+  margin-top: 2rem; /* 上外边距2rem */
+  padding: 1.5rem; /* 内边距1.5rem */
+  border: 2px solid #ffa502; /* 橙色边框 */
+  border-radius: 15px; /* 圆角15像素 */
+  background: rgba(255, 165, 2, 0.1); /* 半透明橙色背景 */
+}
+
+/* 交流部分 */
+.exchange {
+  padding: 0; /* 无内边距 */
+  background-image: url("./images/scene4.png"); /* 背景图片 */
+  background-size: cover; /* 背景图片覆盖整个区域 */
+  background-position: center; /* 背景图片居中 */
+  background-repeat: no-repeat; /* 背景图片不重复 */
+  position: relative; /* 相对定位 */
+  min-height: 100vh; /* 最小高度为视口高度 */
+  display: flex; /* 弹性布局 */
+  align-items: center; /* 垂直居中 */
+}
+
+.exchange-container {
+  max-width: 1400px; /* 最大宽度1400像素 */
+  margin: 0 auto; /* 水平居中 */
+  padding: 0; /* 无内边距 */
+  position: relative; /* 相对定位 */
+  width: 100%; /* 宽度100% */
+  height: 100vh; /* 高度为视口高度 */
+}
+
+.dialogue-overlay {
+  position: absolute; /* 绝对定位 */
+  bottom: 0; /* 底部对齐 */
+  left: 0; /* 左侧对齐 */
+  right: 0; /* 右侧对齐 */
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85)); /* 从透明到黑色的渐变 */
+  padding: 4rem 3rem 3rem; /* 内边距：上4rem，左右3rem，下3rem */
+  color: white; /* 白色文字 */
+}
+
+.dialogue-title {
+  color: #00ffff; /* 青色 */
+  font-size: 2rem; /* 字体大小2rem */
+  font-weight: bold; /* 粗体 */
+  margin-bottom: 1.5rem; /* 下外边距1.5rem */
+  text-align: center; /* 居中对齐 */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* 文字阴影 */
+}
+
+.dialogue-content {
+  max-width: 1000px; /* 最大宽度1000像素 */
+  margin: 0 auto; /* 水平居中 */
+  line-height: 1.7; /* 行高1.7倍 */
+}
+
+.dialogue-text {
+  font-size: 1.1rem; /* 字体大小1.1rem */
+  margin-bottom: 1.2rem; /* 下外边距1.2rem */
+  color: #f1f2f6; /* 浅灰色 */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* 文字阴影 */
+}
+
+.dialogue-question {
+  color: #ffa502; /* 橙色 */
+  font-weight: bold; /* 粗体 */
+}
+
+.dialogue-response {
+  color: #ff6b6b; /* 红色 */
+  font-style: italic; /* 斜体 */
+}
+
+.dialogue-quote {
+  color: #00ffff; /* 青色 */
+  font-style: italic; /* 斜体 */
+  font-size: 1.2rem; /* 字体大小1.2rem */
+  text-align: center; /* 居中对齐 */
+  margin: 1.5rem 0; /* 上下外边距1.5rem */
+  padding: 1rem; /* 内边距1rem */
+  border-left: 4px solid #00ffff; /* 左边框青色 */
+  background: rgba(0, 255, 255, 0.1); /* 半透明青色背景 */
+  border-radius: 0 10px 10px 0; /* 右侧圆角 */
+}
+
+.dialogue-reflection {
+  color: #ddd; /* 浅灰色 */
+  font-size: 1rem; /* 字体大小1rem */
+  text-align: center; /* 居中对齐 */
+  margin-top: 1.5rem; /* 上外边距1.5rem */
+  font-weight: 500; /* 中等字重 */
+}
+
+.character-indicators {
+  position: absolute; /* 绝对定位 */
+  top: 2rem; /* 距离顶部2rem */
+  left: 0; /* 左侧对齐 */
+  right: 0; /* 右侧对齐 */
+  display: flex; /* 弹性布局 */
+  justify-content: space-between; /* 两端对齐 */
+  padding: 0 3rem; /* 左右内边距3rem */
+}
+
+.character-tag {
+  background: rgba(0, 0, 0, 0.7); /* 半透明黑色背景 */
+  color: white; /* 白色文字 */
+  padding: 0.8rem 1.5rem; /* 内边距 */
+  border-radius: 20px; /* 圆角20像素 */
+  font-size: 1rem; /* 字体大小1rem */
+  font-weight: bold; /* 粗体 */
+  backdrop-filter: blur(10px); /* 背景模糊 */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* 半透明白色边框 */
+}
+
+.alex-tag {
+  background: rgba(255, 165, 2, 0.8); /* 半透明橙色背景 */
+}
+
+.maya-tag {
+  background: rgba(0, 255, 255, 0.8); /* 半透明青色背景 */
+  color: #001122; /* 深蓝色文字 */
+}
+
+/* 门户部分 */
+.portal-section {
+  padding: 0; /* 无内边距 */
+  background-image: url("./images/scene5.png"); /* 背景图片 */
+  background-size: cover; /* 背景图片覆盖整个区域 */
+  background-position: center; /* 背景图片居中 */
+  background-repeat: no-repeat; /* 背景图片不重复 */
+  position: relative; /* 相对定位 */
+  min-height: 100vh; /* 最小高度为视口高度 */
+  display: flex; /* 弹性布局 */
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+}
+
+.portal-container {
+  max-width: 1400px; /* 最大宽度1400像素 */
+  margin: 0 auto; /* 水平居中 */
+  padding: 0; /* 无内边距 */
+  position: relative; /* 相对定位 */
+  width: 100%; /* 宽度100% */
+  height: 100vh; /* 高度为视口高度 */
+}
+
+.portal-prompt-overlay {
+  position: absolute; /* 绝对定位 */
+  top: 0; /* 顶部对齐 */
+  left: 0; /* 左侧对齐 */
+  right: 0; /* 右侧对齐 */
+  bottom: 0; /* 底部对齐 */
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 20, 40, 0.8) 50%, rgba(0, 0, 0, 0.7) 100%); /* 渐变遮罩背景 */
+  display: flex; /* 弹性布局 */
+  flex-direction: column; /* 垂直排列 */
+  justify-content: center; /* 垂直居中 */
+  align-items: center; /* 水平居中 */
+  padding: 2rem; /* 内边距2rem */
+}
+
+.portal-content {
+  max-width: 1000px; /* 最大宽度1000像素 */
+  text-align: center; /* 文字居中 */
+  color: white; /* 白色文字 */
+}
+
+.portal-header {
+  margin-bottom: 3rem; /* 下外边距3rem */
+}
+
+.portal-title {
+  color: #00ffff; /* 青色 */
+  font-size: 2.5rem; /* 字体大小2.5rem */
+  font-weight: bold; /* 粗体 */
+  margin-bottom: 1rem; /* 下外边距1rem */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* 文字阴影 */
+}
+
+.portal-subtitle {
+  color: #ffa502; /* 橙色 */
+  font-size: 1.4rem; /* 字体大小1.4rem */
+  font-style: italic; /* 斜体 */
+  margin-bottom: 2rem; /* 下外边距2rem */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* 文字阴影 */
+}
+
+.portal-narrative {
+  margin-bottom: 3rem; /* 下外边距3rem */
+}
+
+.narrative-text {
+  font-size: 1.2rem; /* 字体大小1.2rem */
+  line-height: 1.8; /* 行高1.8倍 */
+  margin-bottom: 1.5rem; /* 下外边距1.5rem */
+  color: #f1f2f6; /* 浅灰色 */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* 文字阴影 */
+}
+
+.inner-thoughts {
+  background: rgba(0, 255, 255, 0.1); /* 半透明青色背景 */
+  border-left: 4px solid #00ffff; /* 左边框青色 */
+  padding: 1.5rem; /* 内边距1.5rem */
+  margin: 2rem 0; /* 上下外边距2rem */
+  border-radius: 0 15px 15px 0; /* 右侧圆角 */
+}
+
+.thought-line {
+  color: #00ffff; /* 青色 */
+  font-style: italic; /* 斜体 */
+  font-size: 1.1rem; /* 字体大小1.1rem */
+  margin-bottom: 0.8rem; /* 下外边距0.8rem */
+  text-align: center; /* 居中对齐 */
+}
+
+.narrative-conclusion {
+  font-size: 1.2rem; /* 字体大小1.2rem */
+  color: #ddd; /* 浅灰色 */
+  font-weight: 500; /* 中等字重 */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* 文字阴影 */
+}
+
+/* 最终日记部分 */
+.final-journal-section {
+  padding: 0; /* 无内边距 */
+  background-image: url("./images/scene6.png"); /* 背景图片 */
+  background-size: cover; /* 背景图片覆盖整个区域 */
+  background-position: center; /* 背景图片居中 */
+  background-repeat: no-repeat; /* 背景图片不重复 */
+  position: relative; /* 相对定位 */
+  min-height: 100vh; /* 最小高度为视口高度 */
+  display: flex; /* 弹性布局 */
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+}
+
+.journal-container {
+  max-width: 1400px; /* 最大宽度1400像素 */
+  margin: 0 auto; /* 水平居中 */
+  padding: 0; /* 无内边距 */
+  position: relative; /* 相对定位 */
+  width: 100%; /* 宽度100% */
+  height: 100vh; /* 高度为视口高度 */
+}
+
+.journal-overlay {
+  position: absolute; /* 绝对定位 */
+  top: 0; /* 顶部对齐 */
+  left: 0; /* 左侧对齐 */
+  right: 0; /* 右侧对齐 */
+  bottom: 0; /* 底部对齐 */
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 20, 40, 0.9) 50%, rgba(0, 0, 0, 0.8) 100%); /* 渐变遮罩背景 */
+  display: flex; /* 弹性布局 */
+  flex-direction: column; /* 垂直排列 */
+  justify-content: center; /* 垂直居中 */
+  align-items: center; /* 水平居中 */
+  padding: 2rem; /* 内边距2rem */
+}
+
+.journal-header {
+  text-align: center; /* 居中对齐 */
+  margin-bottom: 3rem; /* 下外边距3rem */
+  position: relative; /* 相对定位 */
+  width: 100%; /* 宽度100% */
+}
+
+.journal-title {
+  color: #00ffff; /* 青色 */
+  font-size: 3rem; /* 字体大小3rem */
+  font-weight: bold; /* 粗体 */
+  margin-bottom: 2rem; /* 下外边距2rem */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* 文字阴影 */
+}
+
+.choice-questions {
+  display: flex; /* 弹性布局 */
+  justify-content: space-between; /* 两端对齐 */
+  align-items: center; /* 垂直居中对齐 */
+  max-width: 800px; /* 最大宽度800像素 */
+  margin: 0 auto; /* 水平居中 */
+  position: relative; /* 相对定位 */
+}
+
+.question-bubble {
+  background: rgba(255, 255, 255, 0.95); /* 半透明白色背景 */
+  color: #001122; /* 深蓝色文字 */
+  padding: 1rem 1.5rem; /* 内边距 */
+  border-radius: 15px; /* 圆角15像素 */
+  font-size: 1.1rem; /* 字体大小1.1rem */
+  font-weight: bold; /* 粗体 */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* 阴影效果 */
+  backdrop-filter: blur(10px); /* 背景模糊 */
+  border: 2px solid rgba(0, 255, 255, 0.3); /* 青色半透明边框 */
+}
+
+.journal-content {
+  max-width: 1200px; /* 最大宽度1200像素 */
+  width: 100%; /* 宽度100% */
+}
+
+.choice-outcomes {
+  display: grid; /* 网格布局 */
+  grid-template-columns: 1fr 1fr; /* 两列等宽 */
+  gap: 3rem; /* 间距3rem */
+  margin-bottom: 3rem; /* 下外边距3rem */
+}
+
+.outcome-card {
+  background: rgba(255, 255, 255, 0.05); /* 半透明白色背景 */
+  backdrop-filter: blur(15px); /* 背景模糊 */
+  border-radius: 20px; /* 圆角20像素 */
+  padding: 2.5rem; /* 内边距2.5rem */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* 半透明白色边框 */
+  transition: all 0.3s ease; /* 所有属性过渡效果 */
+  position: relative; /* 相对定位 */
+  overflow: hidden; /* 隐藏溢出 */
+}
+
+.accept-outcome {
+  border-left: 4px solid #00ffff; /* 左边框青色 */
+}
+
+.decline-outcome {
+  border-left: 4px solid #ff6b6b; /* 左边框红色 */
+}
+
+.outcome-header h3 {
+  color: #00ffff; /* 青色 */
+  font-size: 1.5rem; /* 字体大小1.5rem */
+  margin-bottom: 1.5rem; /* 下外边距1.5rem */
+  font-weight: bold; /* 粗体 */
+}
+
+.decline-outcome .outcome-header h3 {
+  color: #ff6b6b; /* 红色 */
+}
+
+.outcome-text {
+  color: #f1f2f6; /* 浅灰色 */
+}
+
+.outcome-text p {
+  font-size: 1.1rem; /* 字体大小1.1rem */
+  line-height: 1.8; /* 行高1.8倍 */
+  margin-bottom: 1.5rem; /* 下外边距1.5rem */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* 文字阴影 */
+}
+
+.outcome-quote {
+  background: rgba(0, 255, 255, 0.1); /* 半透明青色背景 */
+  padding: 1.5rem; /* 内边距1.5rem */
+  border-radius: 15px; /* 圆角15像素 */
+  border-left: 4px solid #00ffff; /* 左边框青色 */
+  margin-top: 1rem; /* 上外边距1rem */
+}
+
+.decline-outcome .outcome-quote {
+  background: rgba(255, 107, 107, 0.1); /* 半透明红色背景 */
+  border-left: 4px solid #ff6b6b; /* 左边框红色 */
+}
+
+.outcome-quote em {
+  color: #00ffff; /* 青色 */
+  font-size: 1.2rem; /* 字体大小1.2rem */
+  font-weight: 500; /* 中等字重 */
+  display: block; /* 块级显示 */
+  text-align: center; /* 居中对齐 */
+}
+
+.decline-outcome .outcome-quote em {
+  color: #ff6b6b; /* 红色 */
+}
+
+.journal-reflection {
+  text-align: center; /* 居中对齐 */
+  background: rgba(0, 0, 0, 0.6); /* 半透明黑色背景 */
+  padding: 2.5rem; /* 内边距2.5rem */
+  border-radius: 20px; /* 圆角20像素 */
+  backdrop-filter: blur(10px); /* 背景模糊 */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* 半透明白色边框 */
+}
+
+.reflection-text {
+  color: #ddd; /* 浅灰色 */
+  font-size: 1.3rem; /* 字体大小1.3rem */
+  line-height: 1.8; /* 行高1.8倍 */
+  font-style: italic; /* 斜体 */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* 文字阴影 */
+  margin: 0; /* 无外边距 */
+}
+
+/* 工具类 */
+.fade-in {
+  opacity: 0; /* 初始透明度0 */
+  transform: translateY(30px); /* 初始向下偏移30像素 */
+  transition: all 0.6s ease; /* 所有属性过渡效果0.6秒 */
+}
+
+.fade-in.visible {
+  opacity: 1; /* 可见时透明度1 */
+  transform: translateY(0); /* 可见时恢复原位 */
+}
+
+/* 动画效果 */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg); /* 从0度开始旋转 */
+  }
+  to {
+    transform: rotate(360deg); /* 旋转到360度 */
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.3; /* 开始和结束时透明度30% */
+  }
+  50% {
+    opacity: 1; /* 中间时透明度100% */
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem; /* 移动端主标题字体大小 */
+  }
+
+  .about-content,
+  .neural-mesh-content {
+    grid-template-columns: 1fr; /* 移动端改为单列布局 */
+    gap: 2rem; /* 移动端间距减小 */
+  }
+
+  .nav-links {
+    gap: 1rem; /* 移动端导航链接间距减小 */
+  }
+
+  .brain-visual {
+    width: 350px; /* 移动端大脑视觉宽度 */
+    height: 250px; /* 移动端大脑视觉高度 */
+  }
+
+  .neural-sphere {
+    width: 300px; /* 移动端神经球体宽度 */
+    height: 300px; /* 移动端神经球体高度 */
+  }
+
+  .consciousness-title {
+    font-size: 2rem; /* 移动端意识标题字体大小 */
+  }
+
+  .choice-outcomes {
+    grid-template-columns: 1fr; /* 移动端选择结果改为单列 */
+    gap: 2rem; /* 移动端间距减小 */
+  }
+}
+
+video {
+  width: 100%; /* 视频宽度100% */
+}

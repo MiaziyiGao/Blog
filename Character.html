@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<!-- 声明HTML5文档类型 -->
+<html lang="en">
+<!-- 设置页面语言为英文 -->
+<head>
+    <!-- 页面头部开始 -->
+    <meta charset="UTF-8">
+    <!-- 设置字符编码为UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 设置视口，确保页面在移动设备上正确显示 -->
+    <title>Maya Liyanage - Mesh Operator Profile</title>
+    <!-- 设置页面标题：Maya Liyanage - 网格操作员档案 -->
+    <style>
+        /* 全局重置样式 */
+        * {
+            margin: 0; /* 清除所有元素的默认外边距 */
+            padding: 0; /* 清除所有元素的默认内边距 */
+            box-sizing: border-box; /* 设置盒模型为border-box */
+        }
+        
+        /* 页面主体样式 */
+        body {
+            font-family: 'Inter', sans-serif; /* 设置字体为Inter */
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%); /* 深色渐变背景 */
+            color: #e0e6ed; /* 浅灰色文字 */
+            min-height: 100vh; /* 最小高度为视口高度 */
+            overflow-x: hidden; /* 隐藏水平滚动条 */
+        }
+        
+        /* 神经网络背景效果 */
+        .neural-bg {
+            position: fixed; /* 固定定位 */
+            top: 0; /* 顶部对齐 */
+            left: 0; /* 左侧对齐 */
+            width: 100%; /* 宽度100% */
+            height: 100%; /* 高度100% */
+            opacity: 0.1; /* 透明度10% */
+            background-image: 
+                radial-gradient(circle at 20% 80%, #00d4ff 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, #ff6b6b 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, #4ecdc4 0%, transparent 50%);
+            /* 多重径向渐变创造神经网络视觉效果 */
+            z-index: -1; /* 层级-1，在背景层 */
+        }
+        
+        /* 主容器样式 */
+        .container {
+            max-width: 1200px; /* 最大宽度1200像素 */
+            margin: 0 auto; /* 水平居中 */
+            padding: 2rem; /* 内边距2rem */
+            position: relative; /* 相对定位 */
+            z-index: 1; /* 层级1 */
+        }
+        
+        /* 头部区域样式 */
+        .header {
+            text-align: center; /* 文字居中 */
+            margin-bottom: 3rem; /* 下外边距3rem */
+            padding: 2rem 0; /* 上下内边距2rem */
+            border-bottom: 2px solid rgba(0, 212, 255, 0.3); /* 底部边框青色半透明 */
+        }
+        
+        /* 网格标题样式 */
+        .mesh-title {
+            font-family: 'Orbitron', monospace; /* 科技感等宽字体 */
+            font-size: 0.9rem; /* 字体大小0.9rem */
+            color: #00d4ff; /* 青色 */
+            letter-spacing: 3px; /* 字母间距3像素 */
+            margin-bottom: 1rem; /* 下外边距1rem */
+            text-transform: uppercase; /* 转换为大写字母 */
+        }
+        
+        /* 姓名标题样式 */
+        .name {
+            font-family: 'Orbitron', monospace; /* 科技感等宽字体 */
+            font-size: 3rem; /* 字体大小3rem */
+            font-weight: 900; /* 超粗体 */
+            background: linear-gradient(45deg, #00d4ff, #4ecdc4, #ff6b6b); /* 渐变背景 */
+            background-clip: text; /* 背景裁剪为文字 */
+            margin-bottom: 0.5rem; /* 下外边距0.5rem */
+        }
+        
+        /* 角色信息区域样式 */
+        .role-info {
+            display: flex; /* 弹性布局 */
+            justify-content: center; /* 水平居中 */
+            gap: 2rem; /* 间距2rem */
+            margin-top: 1rem; /* 上外边距1rem */
+            flex-wrap: wrap; /* 允许换行 */
+        }
+        
+        /* 信息标签样式 */
+        .info-chip {
+            background: rgba(0, 212, 255, 0.1); /* 半透明青色背景 */
+            border: 1px solid rgba(0, 212, 255, 0.3); /* 青色半透明边框 */
+            padding: 0.5rem 1rem; /* 内边距 */
+            border-radius: 20px; /* 圆角20像素 */
+            font-size: 0.9rem; /* 字体大小0.9rem */
+            color: #00d4ff; /* 青色文字 */
+        }
+        
+        /* 内容网格布局 */
+        .content-grid {
+            display: grid; /* 网格布局 */
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* 自适应列，最小宽度350像素 */
+            gap: 2rem; /* 间距2rem */
+            margin-top: 2rem; /* 上外边距2rem */
+        }
+        
+        /* 部分容器样式 */
+        .section {
+            background: rgba(255, 255, 255, 0.05); /* 半透明白色背景 */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* 半透明白色边框 */
+            border-radius: 15px; /* 圆角15像素 */
+            padding: 2rem; /* 内边距2rem */
+            backdrop-filter: blur(10px); /* 背景模糊 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* 变换和阴影过渡效果 */
+        }
+        
+        /* 部分容器悬停效果 */
+        .section:hover {
+            transform: translateY(-5px); /* 悬停时向上移动5像素 */
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2); /* 悬停时青色阴影 */
+        }
+        
+        /* 部分标题样式 */
+        .section-title {
+            font-family: 'Orbitron', monospace; /* 科技感等宽字体 */
+            font-size: 1.2rem; /* 字体大小1.2rem */
+            color: #4ecdc4; /* 青绿色 */
+            margin-bottom: 1rem; /* 下外边距1rem */
+            display: flex; /* 弹性布局 */
+            align-items: center; /* 垂直居中对齐 */
+            gap: 0.5rem; /* 间距0.5rem */
+        }
+        
+        /* 部分图标样式 */
+        .section-icon {
+            width: 20px; /* 宽度20像素 */
+            height: 20px; /* 高度20像素 */
+            background: #4ecdc4; /* 青绿色背景 */
+            border-radius: 50%; /* 圆形 */
+            display: inline-block; /* 内联块显示 */
+        }
+        
+        /* 部分内容样式 */
+        .section-content {
+            line-height: 1.6; /* 行高1.6倍 */
+            color: #b8c5d1; /* 浅蓝灰色 */
+        }
+        
+        /* 特质列表样式 */
+        .trait-list {
+            list-style: none; /* 去除列表样式 */
+            padding: 0; /* 无内边距 */
+        }
+        
+        /* 特质列表项样式 */
+        .trait-list li {
+            padding: 0.5rem 0; /* 上下内边距0.5rem */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* 底部边框 */
+            position: relative; /* 相对定位 */
+            padding-left: 1.5rem; /* 左内边距1.5rem */
+        }
+        
+        /* 特质列表项前的箭头符号 */
+        .trait-list li:before {
+            content: "▶"; /* 右箭头符号 */
+            position: absolute; /* 绝对定位 */
+            left: 0; /* 左侧对齐 */
+            color: #00d4ff; /* 青色 */
+        }
+        
+        /* 冲突项样式 */
+        .conflict-item {
+            background: rgba(255, 107, 107, 0.1); /* 半透明红色背景 */
+            border-left: 3px solid #ff6b6b; /* 左边框红色 */
+            padding: 1rem; /* 内边距1rem */
+            margin: 0.5rem 0; /* 上下外边距0.5rem */
+            border-radius: 0 8px 8px 0; /* 右侧圆角 */
+        }
+        
+        /* 高亮文本样式 */
+        .highlight {
+            color: #00d4ff; /* 青色 */
+            font-weight: 600; /* 半粗体 */
+        }
+        
+        /* 引用样式 */
+        .quote {
+            font-style: italic; /* 斜体 */
+            color: #4ecdc4; /* 青绿色 */
+            border-left: 3px solid #4ecdc4; /* 左边框青绿色 */
+            padding-left: 1rem; /* 左内边距1rem */
+            margin: 1rem 0; /* 上下外边距1rem */
+        }
+        
+        /* 状态指示器样式 */
+        .status-indicator {
+            display: inline-block; /* 内联块显示 */
+            width: 10px; /* 宽度10像素 */
+            height: 10px; /* 高度10像素 */
+            background: #4ecdc4; /* 青绿色背景 */
+            border-radius: 50%; /* 圆形 */
+            margin-right: 0.5rem; /* 右外边距0.5rem */
+            animation: pulse 2s infinite; /* 脉冲动画，2秒周期，无限循环 */
+        }
+        
+        /* 脉冲动画定义 */
+        @keyframes pulse {
+            0% { opacity: 1; } /* 开始时不透明 */
+            50% { opacity: 0.5; } /* 中间时半透明 */
+            100% { opacity: 1; } /* 结束时不透明 */
+        }
+        
+        /* 日程安排样式 */
+        .schedule {
+            background: rgba(0, 212, 255, 0.1); /* 半透明青色背景 */
+            border-radius: 8px; /* 圆角8像素 */
+            padding: 1rem; /* 内边距1rem */
+            margin: 1rem 0; /* 上下外边距1rem */
+        }
+        
+        /* 日程项样式 */
+        .schedule-item {
+            display: flex; /* 弹性布局 */
+            justify-content: space-between; /* 两端对齐 */
+            padding: 0.5rem 0; /* 上下内边距0.5rem */
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2); /* 底部边框 */
+        }
+        
+        /* 最后一个日程项去除底部边框 */
+        .schedule-item:last-child {
+            border-bottom: none; /* 无底部边框 */
+        }
+        
+        /* 移动端响应式设计 */
+        @media (max-width: 768px) {
+            .name {
+                font-size: 2rem; /* 移动端姓名字体大小 */
+            }
+            
+            .role-info {
+                flex-direction: column; /* 移动端垂直排列 */
+                align-items: center; /* 居中对齐 */
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr; /* 移动端单列布局 */
+            }
+            
+            .container {
+                padding: 1rem; /* 移动端容器内边距减小 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面主体开始 -->
+    <div class="neural-bg"></div>
+    <!-- 神经网络背景效果 -->
+    
+    <div class="container">
+        <!-- 主容器开始 -->
+        <header class="header">
+            <!-- 页面头部 -->
+            <div class="mesh-title">Mesh Network Operator Profile</div>
+            <!-- 网格网络操作员档案标题 -->
+            <h1 class="name">Maya Liyanage</h1>
+            <!-- 主标题：Maya Liyanage -->
+            <div class="role-info">
+                <!-- 角色信息区域 -->
+                <div class="info-chip">Age: 27</div>
+                <!-- 年龄信息标签 -->
+                <div class="info-chip">Level 1 Novice</div>
+                <!-- 等级信息标签 -->
+                <div class="info-chip"><span class="status-indicator"></span>Active</div>
+                <!-- 状态信息标签，包含动画指示器 -->
+            </div>
+        </header>
+        
+        <div class="content-grid">
+            <!-- 内容网格开始 -->
+            <section class="section">
+                <!-- 背景部分 -->
+                <h2 class="section-title">
+                    <!-- 部分标题 -->
+                    <span class="section-icon"></span>
+                    <!-- 部分图标 -->
+                    Background
+                    <!-- 背景标题 -->
+                </h2>
+                <div class="section-content">
+                    <!-- 部分内容 -->
+                    <p>Maya was raised in the outskirts of a mid-tier urban zone by a <span class="highlight">data analyst father</span> and an <span class="highlight">English teacher mother</span>. From an early age, she was taught to value both structure and self-expression—order and creativity.</p>
+                    <!-- 背景描述段落1 -->
+                    <br>
+                    <!-- 换行 -->
+                    <p>She studied <span class="highlight">urban planning</span> at university, with a minor in <span class="highlight">creative writing</span>, combining her analytical mind with a passion for storytelling.</p>
+                    <!-- 背景描述段落2 -->
+                </div>
+            </section>
+            
+            <section class="section">
+                <!-- 当前状态部分 -->
+                <h2 class="section-title">
+                    <!-- 部分标题 -->
+                    <span class="section-icon"></span>
+                    <!-- 部分图标 -->
+                    Current Status
+                    <!-- 当前状态标题 -->
+                </h2>
+                <div class="section-content">
+                    <!-- 部分内容 -->
+                    <p>Today marks Maya's <span class="highlight">first full Conscious Merge</span>—a total integration into the Mesh, the city's neural coordination network where individual operators blend their thoughts into a collective stream.</p>
+                    <!-- 当前状态描述 -->
+                    
+                    <div class="schedule">
+                        <!-- 日程安排容器 -->
+                        <div class="schedule-item">
+                            <!-- 日程项1 -->
+                            <span>09:00 - 11:00</span>
+                            <!-- 时间 -->
+                            <span>Urban Traffic Optimization</span>
+                            <!-- 任务：城市交通优化 -->
+                        </div>
+                        <div class="schedule-item">
+                            <!-- 日程项2 -->
+                            <span>12:00</span>
+                            <!-- 时间 -->
+                            <span>Creative Writing Collective</span>
+                            <!-- 任务：创意写作集体 -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <!-- 个性特质部分 -->
+                <h2 class="section-title">
+                    <!-- 部分标题 -->
+                    <span class="section-icon"></span>
+                    <!-- 部分图标 -->
+                    Personality Traits
+                    <!-- 个性特质标题 -->
+                </h2>
+                <div class="section-content">
+                    <!-- 部分内容 -->
+                    <ul class="trait-list">
+                        <!-- 特质列表 -->
+                        <li>Empathetic and introspective</li>
+                        <!-- 特质：富有同情心和内省 -->
+                        <li>Cautiously optimistic about technology</li>
+                        <!-- 特质：对技术谨慎乐观 -->
+                        <li>Highly responsible but prone to self-doubt</li>
+                        <!-- 特质：高度负责但容易自我怀疑 -->
+                        <li>Passionate about writing as self-preservation</li>
+                        <!-- 特质：将写作作为自我保护的激情 -->
+                        <li>Struggles to balance individual identity within collective systems</li>
+                        <!-- 特质：在集体系统中努力平衡个人身份 -->
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="section">
+                <!-- 动机部分 -->
+                <h2 class="section-title">
+                    <!-- 部分标题 -->
+                    <span class="section-icon"></span>
+                    <!-- 部分图标 -->
+                    Motivations
+                    <!-- 动机标题 -->
+                </h2>
+                <div class="section-content">
+                    <!-- 部分内容 -->
+                    <p>Maya wants to be <span class="highlight">useful</span>—to help people move more freely through the city, to ease daily pressures, and to contribute meaningfully to a system that claims to serve the greater good.</p>
+                    <!-- 动机描述1 -->
+                    <br>
+                    <!-- 换行 -->
+                    <p>But beneath it all, her deepest need is to <span class="highlight">remain herself</span>. She wants to stay grounded, to remember her own thoughts, to not lose her identity within the Merge.</p>
+                    <!-- 动机描述2 -->
+                </div>
+            </section>
+            
+            <section class="section">
+                <!-- 内心冲突部分 -->
+                <h2 class="section-title">
+                    <!-- 部分标题 -->
+                    <span class="section-icon"></span>
+                    <!-- 部分图标 -->
+                    Inner Conflict
+                    <!-- 内心冲突标题 -->
+                </h2>
+                <div class="section-content">
+                    <!-- 部分内容 -->
+                    <div class="conflict-item">
+                        <!-- 冲突项1 -->
+                        <strong>Collective intelligence</strong> vs. <strong>Personal autonomy</strong>
+                        <!-- 集体智慧 vs 个人自主 -->
+                    </div>
+                    <div class="conflict-item">
+                        <!-- 冲突项2 -->
+                        <strong>Systemic harmony</strong> vs. <strong>Individual chaos</strong>
+                        <!-- 系统和谐 vs 个人混乱 -->
+                    </div>
+                    <div class="conflict-item">
+                        <!-- 冲突项3 -->
+                        <strong>Contribution to society</strong> vs. <strong>Erosion of self</strong>
+                        <!-- 对社会的贡献 vs 自我的侵蚀 -->
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <!-- 独特视角部分 -->
+                <h2 class="section-title">
+                    <!-- 部分标题 -->
+                    <span class="section-icon"></span>
+                    <!-- 部分图标 -->
+                    Unique Perspective
+                    <!-- 独特视角标题 -->
+                </h2>
+                <div class="section-content">
+                    <!-- 部分内容 -->
+                    <p>Maya sees the creative writing collective not as a break, but as a <span class="highlight">lifeline</span>. Amidst the neural entanglement of the Mesh, writing offers her a personal anchor—a reminder that she exists beyond utility, beyond function, beyond data.</p>
+                    <!-- 独特视角描述 -->
+                    
+                    <div class="quote">
+                        <!-- 引用 -->
+                        "Her words are her memory, her proof of self."
+                        <!-- 引用内容：她的文字是她的记忆，是她自我存在的证明 -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
